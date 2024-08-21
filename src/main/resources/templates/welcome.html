@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial, sans-serif; text-align: center;">
+
+<h2>Welcome to the Application</h2>
+<p style="margin: 20px 0;">Please register to create a new account or login if you already have one.</p>
+<a href="#" th:href="@{/register}" style="display: block; margin: 10px 0; text-decoration: none; color: #4CAF50;">Register - Create a new account</a>
+<a href="#" th:href="@{/login}" style="display: block; margin: 10px 0; text-decoration: none; color: #4CAF50;">Login - Access your existing account</a>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial, sans-serif; text-align: center;">
+
+<h2>Login</h2>
+
+<!-- Display error message if there is one -->
+<p th:if="${errorMessage}" style="color: red; font-size: 1.1em; margin-bottom: 20px;" th:text="${errorMessage}"></p>
+
+<form action="#" th:action="@{/login}" th:object="${user}" method="post" style="width: 300px; text-align: left;">
+  <label for="userName" style="display: block; margin-bottom: 5px;">User Name:</label>
+  <input type="text" th:field="*{userName}" id="userName" placeholder="User Name" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+  <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color: red; font-size: 0.9em;"></div>
+
+  <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+  <input type="password" th:field="*{password}" id="password" placeholder="Password" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+  <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red; font-size: 0.9em;"></div>
+
+  <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 3px;">Login</button>
+</form>
+
+<a href="#" th:href="@{/register}" style="display: block; margin-top: 10px; text-decoration: none; color: #4CAF50;">Don't have an account? Register</a>
+<a href="#" th:href="@{/welcome}" style="display: block; margin-top: 10px; text-decoration: none; color: #4CAF50;">Return to Home</a>
+
+</body>
+</html>

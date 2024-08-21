@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .form-container .text-danger {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .form-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .form-container p {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Register</h2>
+
+    <p th:if="${successMessage}" style="color: green; font-size: 1.1em; margin-bottom: 20px;" th:text="${successMessage}"></p>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+
+        <label for="userName">User Name</label>
+        <input type="text" th:field="*{userName}" id="userName" placeholder="User Name"/>
+        <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></div>
+
+        <label for="password">Password</label>
+        <input type="password" th:field="*{password}" id="password" placeholder="Password"/>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+
+        <label for="firstName">First Name</label>
+        <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"/>
+        <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></div>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"/>
+
+        <label for="email">Email</label>
+        <input type="email" th:field="*{email}" id="email" placeholder="Email"/>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <a th:href="@{/login}">Already have an account? Login</a>
+    <a th:href="@{/welcome}">Go to Welcome Page</a>
+    <p th:text="${errorMessage}" th:if="${errorMessage != null}"></p>
+</div>
+
+</body>
+</html>
