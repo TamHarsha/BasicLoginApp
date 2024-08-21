@@ -10,6 +10,7 @@
 <!-- Display error message if there is one -->
 <p th:if="${errorMessage}" style="color: red; font-size: 1.1em; margin-bottom: 20px;" th:text="${errorMessage}"></p>
 
+
 <form action="#" th:action="@{/login}" th:object="${user}" method="post" style="width: 300px; text-align: left;">
   <label for="userName" style="display: block; margin-bottom: 5px;">User Name:</label>
   <input type="text" th:field="*{userName}" id="userName" placeholder="User Name" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>

@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,22 +51,38 @@ public class UserController {
     }
 
 
+//    @GetMapping("/login")
+//    public String showLoginForm(Model model) {
+//        model.addAttribute("user", new UserData());
+//        return "login";
+//    }
+    
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm(Model model, @RequestParam(value = "error", required = false) String error) {
+        if (error != null) {
+            model.addAttribute("errorMessage", "Invalid username or password. Please try again.");
+        }
         model.addAttribute("user", new UserData());
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginUser(@ModelAttribute("user") UserData user, Model model) {
-        try {
-            UserData loggedInUser = userService.loginUser(user.getUserName(), user.getPassword());
-        } catch (RuntimeException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "login";
-        }
-        List<UserData> allUsers = userService.getAllUsers();
-        model.addAttribute("users", allUsers);
+//    @PostMapping("/login")
+//    public String loginUser(@ModelAttribute("user") UserData user, Model model) {
+//        try {
+//           // UserData loggedInUser = userService.loginUser(user.getUserName(), user.getPassword());
+//        } catch (RuntimeException e) {
+//            model.addAttribute("errorMessage", e.getMessage());
+//            return "login";
+//        }
+//        List<UserData> allUsers = userService.getAllUsers();
+//        model.addAttribute("users", allUsers);
+//        return "user-home";
+//    }
+    
+    @GetMapping("/user/list")
+    public String listAllUsers(Model model) {
+        List<UserData> users = userService.getAllUsers();
+        model.addAttribute("users", users);
         return "user-home";
     }
 
